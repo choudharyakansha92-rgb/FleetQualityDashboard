@@ -219,5 +219,13 @@ const App: FC = () => {
     </div>
   );
 };
-
-export default App;
+export default function App() {
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <header className="bg-white shadow">
+        <h1 className="text-2xl font-bold p-4">"Imaging Fleet Analytics"</h1>
+      </header>
+      {/* 5 MetricCard grid */}
+    </div>
+  )
+}
