@@ -5,9 +5,13 @@ frontend:
       commands:
         - node --version
         - npm --version
+        - echo "Working dir: $(pwd)"
+        - echo "Files here:" && ls -la
         - npm install --include=dev
     build:
       commands:
+        - echo "Starting vite build from $(pwd)"
+        - ls index.html src/main.tsx
         - npm run build
   artifacts:
     baseDirectory: dist
