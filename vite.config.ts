@@ -1,13 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { fileURLToPath, URL } from "node:url";
+import path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // Must match tsconfig "paths": { "@/*": ["./src/*"] }
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   server: {
@@ -16,6 +15,10 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    emptyOutDir: true,
     sourcemap: false,
+    rollupOptions: {
+      input: path.resolve(__dirname, "index.html"),
+    },
   },
 });
