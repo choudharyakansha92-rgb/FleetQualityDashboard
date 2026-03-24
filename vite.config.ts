@@ -4,9 +4,10 @@ import path from "node:path";
 
 export default defineConfig({
   plugins: [react()],
+  root: process.cwd(),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.join(process.cwd(), "src"),
     },
   },
   server: {
@@ -14,7 +15,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: "dist",
+    outDir: path.join(process.cwd(), "dist"),
     emptyOutDir: true,
     sourcemap: false,
   },
