@@ -1,0 +1,26 @@
+name: Build Check
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install
+        run: npm install --include=dev
+
+      - name: Build
+        run: npm run build
+
+      - name: Check dist
+        run: test -f dist/index.html && echo "OK" || (echo "dist/index.html missing" && exit 1)
